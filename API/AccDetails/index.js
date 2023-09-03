@@ -31,6 +31,26 @@ Router.get('/getallaccount', async(req,res) => {
    return res.json({allAccountStatements: getAllAccDetails});
 });
 
-
+/*
+Route  /modify/phoneno/:username
+Method  PUT
+parameter  /:username
+Access  PUBLIC
+Description  to modify or update phone number
+*/
+Router.put('/modify/phoneno', async(req, res) => {
+  const newdata = await database.findOneAndUpdate(
+  {
+      name : req.body.name,
+  },
+  {
+    phonenumber : req.body.newnumber,
+  },
+  {
+    new : true,
+  },
+  );
+  return res.json({ministatement : newdata});
+});
 
 module.exports = Router;
