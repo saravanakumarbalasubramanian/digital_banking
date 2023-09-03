@@ -1,0 +1,19 @@
+bank account
+
+// to open an account
+ ==> needs
+   name
+   age
+   aadhar 
+   pan card
+
+// account details
+ ==> needs
+    name
+    account type
+    account number 
+    phone number
+    IFSC code
+    branch
+    bank balance
+
