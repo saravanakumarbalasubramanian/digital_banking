@@ -11,9 +11,14 @@ Access  PUBLIC
 Description  add new account
 */
 Router.post('/addnew', async(req, res) => {
- const {newAcc} = req.body;
- const addNewAccount = await database.create(newAcc);
- return res.json({newAccount : addNewAccount})
+
+ try {
+  const {newAcc} = req.body;
+  const addNewAccount = await database.create(newAcc);
+  return res.json({newAccount : addNewAccount})
+ } catch (error) {
+   return res.json({error: error.message});
+ }
 }
 );
 
