@@ -110,5 +110,18 @@ Router.put('/change/acc/branch', async(req, res) => {
 });
 
 
+/*
+ROUTE   /check/balance/:username
+METHOD  GET
+PARMAETER /:username
+ACCESS    PUBLIC 
+DESCRIPTION   To check the bank balance 
+*/
+ Router.get('/check/balance/:username', async(req, res) => { 
+  const getdata = await database.findOne({name:req.params.username});
+  return res.json({bankbalance: getdata.bankbalance});
+ });
+
+
 
 module.exports = Router;
