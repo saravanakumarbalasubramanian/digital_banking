@@ -53,4 +53,30 @@ Router.put('/modify/phoneno', async(req, res) => {
   return res.json({ministatement : newdata});
 });
 
+/*
+ROUTE           /update/username/
+METHOD          PUT 
+PARAMETER       NONE
+ACCESS          PUBLIC
+Desctiption     to update the user name 
+*/
+Router.put('/update/username', async(req, res) => {
+    const updateusername = await database.findOneAndUpdate(
+      {
+        name : req.body.oldusername,
+      },
+      {
+        name : req.body.newusername,
+      },
+      {
+        new : true,
+      },
+    )
+    return res.json({message : updateusername});
+});
+
+
+
+
+
 module.exports = Router;
