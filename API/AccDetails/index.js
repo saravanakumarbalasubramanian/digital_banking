@@ -75,7 +75,39 @@ Router.put('/update/username', async(req, res) => {
     return res.json({message : updateusername});
 });
 
+/*
+ROUTE       /change/acc/branch
+METHOD      PUT
+PARAMETER   NONE
+ACCESS      PUBLIC
+DESCRIPTION     Requesting to change the account branch
+*/
+Router.put('/change/acc/branch', async(req, res) => {
+  const updatedData = await database.findOneAndUpdate(
+    {
+      name: req.body.username,
+    },
+    {
+      branch: req.body.newbranch,
+    },
+    {
+      new: true,
+    },
+    );
+    const updateifsc = await database.findOneAndUpdate(
+      {
+        name : req.body.username,
+      },
+      {
+        IFSCcode: req.body.newifsccode,
+      },
+      {
+        new: true,
+      },
+      );
+      return res.json({message: updatedData, updateifsc});
 
+});
 
 
 
