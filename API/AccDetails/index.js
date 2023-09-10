@@ -27,8 +27,14 @@ Access  PUBLIC
 Description  get all account
  */
 Router.get('/getallaccount', async(req,res) => {
-   const getAllAccDetails = await database.find();
-   return res.json({allAccountStatements: getAllAccDetails});
+   try {
+  
+    const getAllAccDetails = await database.find();
+    return res.json({allAccountStatements: getAllAccDetails});
+ 
+  } catch (error) {
+     return res.json({ error : error });
+   }
 });
 
 /*
@@ -118,8 +124,14 @@ ACCESS    PUBLIC
 DESCRIPTION   To check the bank balance 
 */
  Router.get('/check/balance/:username', async(req, res) => { 
-  const getdata = await database.findOne({name:req.params.username});
-  return res.json({bankbalance: getdata.bankbalance});
+    try {
+    
+      const getdata = await database.findOne({name:req.params.username});
+      return res.json({bankbalance: getdata.bankbalance});
+   
+    } catch (error) {
+      return res.json({error: error.message});
+    }
  });
 
 

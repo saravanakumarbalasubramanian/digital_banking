@@ -30,9 +30,12 @@ Access    PUBLIC
 Description  to get all accounts
 */
 Router.get('/getall', async (req, res) => {
+try {
   const allDetails = await database.find();
-
   return res.json({allAccountDetails: allDetails});
+} catch (error) {
+  return res.json({error : error});
+}
 });
 
 
